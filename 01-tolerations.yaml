@@ -5,5 +5,11 @@ metadata:
 spec: 
   containers: 
   #docker run -d --name nginx nginx
-   - name: nginx
-     image: nginx:stable-perl
+  - name: nginx
+    image: nginx:stable-perl
+
+  tolerations:
+  - key: "hardware"
+    operator: "Equal"
+    value: "gpu"
+    effect: "NoSchedule"
