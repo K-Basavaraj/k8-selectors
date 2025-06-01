@@ -41,6 +41,7 @@ spec:
         app: web-store
     spec:
       affinity:
+      # Anti-Affinity: Don't place web pods together
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -51,6 +52,7 @@ spec:
                 - web-store
             topologyKey: "kubernetes.io/hostname"
         podAffinity:
+        # Affinity: Prefer to be where Redis pods (store) are
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
